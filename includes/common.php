@@ -25,3 +25,21 @@ function remove_extra_emoji_handling() {
 	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
 	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 }
+
+add_filter( 'wp_resource_hints', __NAMESPACE__ . '\remove_wp_org_cdn_prefetch' );
+
+/**
+ * Remove unnecessary DNS prefetch for s.w.org.
+ */
+function remove_wp_org_cdn_prefetch( $urls ) {
+
+	foreach( $urls as $key => $url ) {
+
+		// Look for the likely URL controlling emoji images.
+		if ( mb_strpos( $url, 's.w.org/images/core/emoji' ) ) {
+			unset( $urls[ $key ] );
+		}
+	}
+
+	return $urls;
+}
