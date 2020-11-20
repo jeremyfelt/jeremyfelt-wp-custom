@@ -1,0 +1,5 @@
+/* WordPress does not account for custom comment types
+ * with avatars. */
+.avatar ~ .dashboard-comment-wrap {
+    padding-left: 63px;
+}
