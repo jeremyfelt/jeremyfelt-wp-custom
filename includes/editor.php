@@ -2,7 +2,7 @@
 
 namespace JWC\Editor;
 
-add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\remove_classic_admin_styles' );
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\remove_classic_admin_enqueues' );
 add_action( 'admin_bar_init', __NAMESPACE__ . '\remove_classic_admin_bar' );
 
 function remove_classic_admin_enqueues() {
