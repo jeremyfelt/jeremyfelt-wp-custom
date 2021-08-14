@@ -5,6 +5,13 @@ namespace JWC\Editor;
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\remove_classic_admin_enqueues' );
 add_action( 'admin_bar_init', __NAMESPACE__ . '\remove_classic_admin_bar' );
 
+/**
+ * Remove classic admin scripts and styles where possible when the block
+ * editor is loaded.
+ *
+ * Note: If the block editor is not used in full screen mode, then the
+ *       experience will get worse, not better.
+ */
 function remove_classic_admin_enqueues() {
 	if ( get_current_screen()->is_block_editor() ) {
 		// Colors has a lot of stylesheet friends that just *poof* away.
@@ -19,6 +26,9 @@ function remove_classic_admin_enqueues() {
 /**
  * Gutenberg no longer displays the admin bar. Remove associated
  * scripts and styles.
+ *
+ * Note: If the block editor is not used in full screen mode, then the
+ *       experience will get worse, not better.
  */
 function remove_classic_admin_bar() {
 	// The current screen isn't set yet.
