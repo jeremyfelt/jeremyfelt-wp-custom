@@ -4,6 +4,7 @@ namespace JWC\Common;
 
 add_action( 'plugins_loaded', __NAMESPACE__ . '\remove_extra_emoji_handling' );
 add_action( 'plugins_loaded', __NAMESPACE__ . '\remove_default_actions' );
+add_action( 'plugins_loaded', __NAMESPACE__ . '\dequeue_global_styles' );
 
 /**
  * Free emoji to be exactly what they are and remain optimistic that the
@@ -59,4 +60,16 @@ function remove_wp_org_cdn_prefetch( $urls ) {
 	}
 
 	return $urls;
+}
+
+/**
+ * Stop both Gutenberg and WordPress from enqueuing default color palette and gradient
+ * styles on every page view.
+ *
+ * This is probably a bad idea somehow.
+ */
+function dequeue_global_styles() {
+	remove_action( 'wp_enqueue_scripts', 'gutenberg_experimental_global_styles_enqueue_assets' );
+	remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+	remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 }
