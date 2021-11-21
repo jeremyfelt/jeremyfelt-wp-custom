@@ -2,8 +2,8 @@
 
 namespace JWC\Editor;
 
-add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\remove_classic_admin_enqueues' );
-add_action( 'admin_bar_init', __NAMESPACE__ . '\remove_classic_admin_bar' );
+//add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\remove_classic_admin_enqueues' );
+//add_action( 'admin_bar_init', __NAMESPACE__ . '\remove_classic_admin_bar' );
 
 /**
  * Remove classic admin scripts and styles where possible when the block
